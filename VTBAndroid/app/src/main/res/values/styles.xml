@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="FullScreen" parent="Theme.AppCompat.NoActionBar">
+    <style name="FullScreen" parent="Theme.Design.Light.NoActionBar">
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
 
@@ -19,6 +19,10 @@
 
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowDrawsSystemBarBackgrounds">false</item>
-    </style>
 
+        <item name="android:windowDisablePreview">true</item>
+
+        <item name="colorControlNormal">#999EA9</item>
+        <item name="colorControlActivated">#3A83F1</item>
+    </style>
 </resources>
