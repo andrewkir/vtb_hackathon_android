@@ -1,8 +1,12 @@
 package ru.andrewkir.vtbmobile.Api
 
+import com.google.gson.JsonElement
 import com.google.gson.JsonObject
+import com.google.gson.JsonPrimitive
 import io.reactivex.Observable
 import retrofit2.http.*
+import ru.andrewkir.vtbmobile.DataClasses.CarPhoto
+import ru.andrewkir.vtbmobile.DataClasses.CreditRequest
 
 
 interface WebService {
@@ -23,12 +27,13 @@ interface WebService {
     fun getBalance(@Header("AuthToken") authHeader: String,
                    @Header("accountNumber") accountHeader: String): Observable<JsonObject>
 
-    @POST("links")
-    fun createNewLink(@Header("AuthToken") authHeader: String,
-                      @Header("accountNumber") accountHeader: String,
-                      @Header("x-Idempotency-Key") idempotencyKey: String,
-                      @Body body: JsonObject
-    ): Observable<JsonObject>
+    @POST("car_loan/")
+    fun createNewCredit(@Body body: CreditRequest
+    ): Observable<JsonElement>
+
+    @POST("car_recognize/")
+    fun recogniseCar(@Body body: CarPhoto
+    ): Observable<JsonElement>
 
     @GET("send")
     fun sendMoney(@Header("AuthToken") authHeader: String,

@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:isScrollContainer="true"
     android:orientation="vertical">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <LinearLayout
+            android:id="@+id/scrollLinear"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:clipChildren="false"
             android:orientation="vertical"
             tools:context=".CreditActivity">
 
@@ -60,7 +63,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="18dp"
                 android:layout_marginRight="16dp"
@@ -69,19 +72,21 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:paddingRight="10dp"
-                    android:drawableEnd="@drawable/ic_account_dark"
-                    android:drawablePadding="10dp"
+                    android:id="@+id/fioInput"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:drawableEnd="@drawable/ic_account_dark"
+                    android:drawablePadding="10dp"
                     android:hint="ФИО"
+                    android:inputType="textPersonName"
+                    android:paddingRight="10dp"
                     android:textColor="@android:color/black" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout2"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -89,19 +94,22 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:paddingRight="10dp"
-                    android:drawableEnd="@drawable/ic_calendar_dark"
-                    android:drawablePadding="10dp"
+                    android:id="@+id/date_input"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:digits="0123456789."
+                    android:drawableEnd="@drawable/ic_calendar_dark"
+                    android:drawablePadding="10dp"
                     android:hint="Дата рождения"
+                    android:inputType="date"
+                    android:paddingRight="10dp"
                     android:textColor="@android:color/black" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout3"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -109,12 +117,14 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:paddingRight="10dp"
-                    android:drawableEnd="@drawable/ic_group_dark"
-                    android:drawablePadding="10dp"
+                    android:id="@+id/genderInput"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:drawableEnd="@drawable/ic_group_dark"
+                    android:drawablePadding="10dp"
                     android:hint="Пол"
+                    android:inputType="textPersonName"
+                    android:paddingRight="10dp"
                     android:textColor="@android:color/black" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -133,7 +143,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout4"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -141,19 +151,21 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:paddingRight="10dp"
-                    android:drawableEnd="@drawable/ic_email_dark"
-                    android:drawablePadding="10dp"
+                    android:id="@+id/emailInput"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:drawableEnd="@drawable/ic_email_dark"
+                    android:drawablePadding="10dp"
                     android:hint="Email"
+                    android:inputType="textEmailAddress"
+                    android:paddingRight="10dp"
                     android:textColor="@android:color/black" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout5"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -161,12 +173,14 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:paddingRight="10dp"
-                    android:drawableEnd="@drawable/ic_phone_dark"
-                    android:drawablePadding="10dp"
+                    android:id="@+id/phoneInput"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:drawableEnd="@drawable/ic_phone_dark"
+                    android:drawablePadding="10dp"
                     android:hint="Телефон"
+                    android:inputType="phone"
+                    android:paddingRight="10dp"
                     android:textColor="@android:color/black" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -184,7 +198,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout6"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -192,19 +206,21 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:paddingRight="10dp"
-                    android:drawableEnd="@drawable/ic_file_dark"
-                    android:drawablePadding="10dp"
+                    android:id="@+id/passportInput"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:drawableEnd="@drawable/ic_file_dark"
+                    android:drawablePadding="10dp"
                     android:hint="Серия и номер"
+                    android:inputType="numberDecimal"
+                    android:paddingRight="10dp"
                     android:textColor="@android:color/black" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout7"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -212,18 +228,190 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:paddingRight="10dp"
-                    android:drawableEnd="@drawable/ic_world_dark"
-                    android:drawablePadding="10dp"
+                    android:id="@+id/cityInput"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="Город рождения"
+                    android:drawableEnd="@drawable/ic_world_dark"
+                    android:drawablePadding="10dp"
+                    android:hint="Место рождения"
+                    android:inputType="textPersonName"
+                    android:paddingRight="10dp"
+                    android:textColor="@android:color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Кредит"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/creditAuto"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawableEnd="@drawable/ic_auto_dark"
+                    android:drawablePadding="10dp"
+                    android:enabled="false"
+                    android:hint="Марка авто"
+                    android:inputType="text"
+                    android:paddingRight="10dp"
+                    android:text="BMW M2 2019"
+                    android:textColor="@android:color/darker_gray" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/carCost"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawableEnd="@drawable/ic_ruble_dark"
+                    android:drawablePadding="10dp"
+                    android:enabled="false"
+                    android:hint="Стоимость"
+                    android:inputType="numberDecimal"
+                    android:paddingRight="10dp"
+                    android:text="1 500 000"
+                    android:textColor="@android:color/darker_gray" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/creditSumText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Сумма кредита: 100000"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
+
+            <SeekBar
+                android:id="@+id/main_slider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:max="25"
+                android:min="1" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/creditRange"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawableEnd="@drawable/ic_date_dark"
+                    android:drawablePadding="10dp"
+                    android:hint="Срок кредита (месяцев)"
+                    android:inputType="number"
+                    android:paddingRight="10dp"
+                    android:textColor="@android:color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/creditRate"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:digits="0123456789.%"
+                    android:drawableEnd="@drawable/ic_coins_dark"
+                    android:drawablePadding="10dp"
+                    android:hint="Кредитная ставка"
+                    android:inputType="numberDecimal"
+                    android:paddingRight="10dp"
+                    android:textColor="@android:color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/personIncome"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:digits="0123456789."
+                    android:drawableEnd="@drawable/ic_coins_dark"
+                    android:drawablePadding="10dp"
+                    android:hint="Доход в месяц"
+                    android:inputType="numberDecimal"
+                    android:paddingRight="10dp"
+                    android:textColor="@android:color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/additionalComment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:maxLines="3"
+                    android:drawablePadding="10dp"
+                    android:hint="Дополнительный комментарий"
+                    android:inputType="text"
+                    android:paddingRight="10dp"
                     android:textColor="@android:color/black" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
             <ImageButton
-                android:layout_weight="0"
                 android:id="@+id/continueButton"
                 android:layout_width="296dp"
                 android:layout_height="48dp"
@@ -233,5 +421,5 @@
                 android:foreground="?android:attr/selectableItemBackground"
                 app:srcCompat="@drawable/ic_next_button" />
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>

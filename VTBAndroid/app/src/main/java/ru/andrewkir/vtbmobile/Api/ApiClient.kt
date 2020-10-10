@@ -9,7 +9,7 @@ object ApiClient {
         val retrofit = Retrofit.Builder()
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl("https://api.yar.cx")
+            .baseUrl("https://vtb-backend.herokuapp.com/api/")
             .build()
         retrofit.create(WebService::class.java)
     }
