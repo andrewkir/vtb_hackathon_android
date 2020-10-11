@@ -14,7 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:windowSoftInputMode="adjustPan">
-        <activity android:name=".ProfileFragment"></activity>
+        <activity android:name=".ConfData"></activity>
+        <activity android:name=".RegisterActivity" />
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/title_activity_login" />
+        <activity android:name=".ProfileFragment" />
         <activity
             android:name=".CreditActivity"
             android:windowSoftInputMode="adjustPan" />

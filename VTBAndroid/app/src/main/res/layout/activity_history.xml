@@ -25,7 +25,7 @@
             android:textSize="24sp" />
 
         <ImageButton
-            android:id="@+id/closeCreditActivity"
+            android:id="@+id/closeActivity"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_gravity="center"

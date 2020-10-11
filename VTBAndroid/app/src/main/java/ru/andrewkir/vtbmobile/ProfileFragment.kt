@@ -1,14 +1,21 @@
 package ru.andrewkir.vtbmobile
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.google.gson.JsonArray
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_profile.*
+import ru.andrewkir.vtbmobile.Api.ApiClient
 
-class ProfileFragment : Fragment() {
+class ProfileFragment(var func: (position: Int) -> Unit) : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -16,13 +23,43 @@ class ProfileFragment : Fragment() {
         return inflater.inflate(R.layout.activity_profile, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-    companion object {
-        fun newInstance(): ProfileFragment {
-            return ProfileFragment()
+        closeActivity.setOnClickListener {
+            func(1)
+        }
+
+        exitButton.setOnClickListener {
+            val sharedPref = PreferenceManager.getDefaultSharedPreferences(activity)
+            with (sharedPref.edit()) {
+                putString("access_token", "")
+                putString("refresh_token", "")
+                apply()
+            }
+            func(1)
+        }
+
+        confData.setOnClickListener {
+            val sharedPref = PreferenceManager.getDefaultSharedPreferences(activity)
+            var access = sharedPref.getString("access_token","")!!
+            var refresh = sharedPref.getString("refresh_token","")!!
+
+            val apiService = ApiClient.instance
+            apiService.extraData(
+                "Bearer $access"
+            )
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe({ res ->
+                    val intent = Intent(activity, ConfData::class.java)
+                    intent.putExtra("data", (res as JsonArray)[0].toString())
+                    startActivity(intent)
+                }, { error ->
+                    Toast.makeText(activity, error.message, Toast.LENGTH_SHORT).show()
+                })
         }
     }
+
+
 }

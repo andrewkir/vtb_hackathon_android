@@ -28,7 +28,7 @@ import ru.andrewkir.vtbmobile.Api.ApiClient
 import ru.andrewkir.vtbmobile.DataClasses.CarPhoto
 import java.io.IOException
 
-class CameraFragment: Fragment() {
+class CameraFragment(var func: (position: Int) -> Unit): Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -84,7 +84,7 @@ class CameraFragment: Fragment() {
         closeButton.setOnClickListener {
             takePhotoButton.isEnabled = true
             accountButton.isEnabled = true
-            helpButton.isEnabled = true
+            historyButton.isEnabled = true
 
             closeButton.visibility = View.INVISIBLE
             cardView.visibility = View.INVISIBLE
@@ -112,7 +112,7 @@ class CameraFragment: Fragment() {
 
             takePhotoButton.isEnabled = false
             accountButton.isEnabled = false
-            helpButton.isEnabled = false
+            historyButton.isEnabled = false
 
             progressBar.visibility = View.VISIBLE
 
@@ -156,20 +156,20 @@ class CameraFragment: Fragment() {
 
                             takePhotoButton.isEnabled = true
                             accountButton.isEnabled = true
-                            helpButton.isEnabled = true
+                            historyButton.isEnabled = true
                         } else {
                             Toast.makeText(activity, "Не удалось распознать автомобиль, попробуйте ещё раз", Toast.LENGTH_SHORT).show()
 
                             takePhotoButton.isEnabled = true
                             accountButton.isEnabled = true
-                            helpButton.isEnabled = true
+                            historyButton.isEnabled = true
                         }
                         progressBar.visibility = View.INVISIBLE
                     }, { error ->
 
                         takePhotoButton.isEnabled = true
                         accountButton.isEnabled = true
-                        helpButton.isEnabled = true
+                        historyButton.isEnabled = true
 
                         progressBar.visibility = View.INVISIBLE
 
@@ -217,18 +217,14 @@ class CameraFragment: Fragment() {
         }
 
         accountButton.setOnClickListener {
-            
+            func(2)
         }
-
+        historyButton.setOnClickListener {
+            func(0)
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-    }
-
-    companion object {
-        fun newInstance(): CameraFragment {
-            return CameraFragment()
-        }
     }
 }
