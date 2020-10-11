@@ -95,7 +95,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="328dp"
-        android:layout_height="474dp"
+        android:layout_height="400dp"
         android:elevation="10dp"
         app:cardBackgroundColor="@android:color/white"
         app:cardCornerRadius="30dp"
@@ -109,24 +109,15 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="280dp"
-                android:layout_height="154dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="28dp"
-                app:cardCornerRadius="15dp"
-                android:elevation="5dp"
-                app:cardUseCompatPadding="true"
-                android:background="@drawable/roundimage"
-                android:scaleType="fitCenter">
-
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="28dp"
+                    android:id="@+id/carPhoto"
+                    android:layout_width="280dp"
+                    android:layout_height="154dp"
                     app:srcCompat="@drawable/bmw"
                     android:scaleType="centerCrop"
                     />
-            </androidx.cardview.widget.CardView>
 
             <TextView
                 android:id="@+id/carNameView"
@@ -140,14 +131,15 @@
                 android:textSize="24sp" />
 
             <TextView
+                android:id="@+id/carDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/roboto_medium"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                android:textAlignment="center"
+                android:text="Цены:\nРасход:\nМаксимальная скорость:\nРазгон до 100 км/ч:"
+                android:textAlignment="textStart"
                 android:textColor="#999EA9"
                 android:textSize="14sp" />
 
@@ -156,11 +148,12 @@
                 android:layout_width="296dp"
                 android:layout_height="48dp"
                 android:foreground="?android:attr/selectableItemBackground"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
                 android:layout_gravity="center"
                 app:srcCompat="@drawable/ic_blue_button_back" />
 
             <ImageButton
+                android:visibility="gone"
                 android:id="@+id/imageButton3"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"

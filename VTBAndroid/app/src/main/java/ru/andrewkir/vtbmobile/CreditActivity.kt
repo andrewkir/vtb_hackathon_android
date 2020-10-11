@@ -27,6 +27,14 @@ class CreditActivity : AppCompatActivity() {
         setTheme(R.style.FullScreen)
         setContentView(R.layout.activity_credit)
 
+        val maxPrice = intent.extras!!.getInt("maxPrice", 0)
+        val rangePrice = intent.extras!!.getString("priceRange", "")
+        val carName = intent.extras!!.getString("carName", "")
+
+        main_slider.max = maxPrice / 100000
+        creditAuto.setText(carName)
+        carCost.setText(rangePrice)
+
         emailInput.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }
@@ -160,7 +168,7 @@ class CreditActivity : AppCompatActivity() {
                     carCost.text.toString().replace(" ", "").toInt()
                 )
 
-                val apiService = ApiClient.instance
+                val apiService = ApiClient(this).instance
                 apiService.createNewCredit(
                     reqBody
                 )

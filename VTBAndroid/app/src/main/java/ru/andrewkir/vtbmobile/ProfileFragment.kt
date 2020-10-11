@@ -23,12 +23,19 @@ class ProfileFragment(var func: (position: Int) -> Unit) : Fragment() {
         return inflater.inflate(R.layout.activity_profile, container, false)
     }
 
+    override fun onResume() {
+        super.onResume()
+        updateData()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         closeActivity.setOnClickListener {
             func(1)
         }
+
+        updateData()
 
         exitButton.setOnClickListener {
             val sharedPref = PreferenceManager.getDefaultSharedPreferences(activity)
@@ -45,7 +52,7 @@ class ProfileFragment(var func: (position: Int) -> Unit) : Fragment() {
             var access = sharedPref.getString("access_token","")!!
             var refresh = sharedPref.getString("refresh_token","")!!
 
-            val apiService = ApiClient.instance
+            val apiService = ApiClient(activity!!.applicationContext).instance
             apiService.extraData(
                 "Bearer $access"
             )
@@ -61,5 +68,18 @@ class ProfileFragment(var func: (position: Int) -> Unit) : Fragment() {
         }
     }
 
+    override fun setMenuVisibility(menuVisible: Boolean) {
+        super.setMenuVisibility(menuVisible)
+        if(menuVisible){
+            updateData()
+        }
+    }
+
+
+    fun updateData(){
+        val sharedPref = PreferenceManager.getDefaultSharedPreferences(activity)
+        var fio = sharedPref.getString("fio","")!!
+        nameText.text = fio
+    }
 
 }

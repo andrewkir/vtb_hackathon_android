@@ -75,7 +75,7 @@ class RegisterActivity : AppCompatActivity() {
             } else {
                 loading.visibility = View.VISIBLE
 
-                val apiService = ApiClient.instance
+                val apiService = ApiClient(this).instance
                 apiService.register(
                     RegisterRequest(
                         username = emailInput.text.toString(),

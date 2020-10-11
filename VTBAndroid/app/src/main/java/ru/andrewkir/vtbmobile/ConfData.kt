@@ -10,6 +10,7 @@ import com.google.gson.JsonObject
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_conf_data.*
+import kotlinx.android.synthetic.main.activity_profile.*
 import ru.andrewkir.vtbmobile.Api.ApiClient
 import ru.andrewkir.vtbmobile.DataClasses.UserDataRequest
 import ru.andrewkir.vtbmobile.DataClasses.UserDataResponse
@@ -44,6 +45,8 @@ class ConfData : AppCompatActivity() {
 
         if (data.income_amount != 0) personIncome.setText(data.income_amount.toString())
         if (data.phone != null) phoneInput.setText(data.phone.toString())
+
+        saveData()
 
         saveButton.setOnClickListener {
             if (fioInput.text.isNullOrEmpty() || date_input.text.isNullOrEmpty() ||
@@ -86,7 +89,7 @@ class ConfData : AppCompatActivity() {
                     nationality_country_code = "RU"
                 )
 
-                val apiService = ApiClient.instance
+                val apiService = ApiClient(this).instance
                 apiService.saveExtraData(
                     data.id,
                     "Bearer $access",
@@ -95,11 +98,31 @@ class ConfData : AppCompatActivity() {
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(Schedulers.io())
                     .subscribe({ res ->
-                        Toast.makeText(this, res.toString(), Toast.LENGTH_SHORT).show()
+                        saveData()
+                        Toast.makeText(this, "Сохранено", Toast.LENGTH_SHORT).show()
+                        finish()
                     }, { error ->
                         Toast.makeText(applicationContext, error.message, Toast.LENGTH_SHORT).show()
                     })
             }
+        }
+
+        closeConfActivity.setOnClickListener {
+            finish()
+        }
+    }
+
+    fun saveData() {
+        val sharedPref = PreferenceManager.getDefaultSharedPreferences(this)
+        with(sharedPref.edit()) {
+            if (genderInput.text!!.isNotEmpty() && !textInputLayout3.isErrorEnabled) putString("gender", genderInput.text.toString())
+            if (date_input.text!!.isNotEmpty() && !textInputLayout2.isErrorEnabled) putString("birth_date", date_input.text.toString())
+            if (cityInput.text!!.isNotEmpty() && !textInputLayout7.isErrorEnabled) putString("birth_place", cityInput.text.toString())
+            if (emailInput.text!!.isNotEmpty() && !textInputLayout4.isErrorEnabled) putString("email", emailInput.text.toString())
+            if (fioInput.text!!.isNotEmpty() && !textInputLayout.isErrorEnabled) putString("fio", fioInput.text.toString())
+            if (personIncome.text!!.isNotEmpty() && !textInputLayout12.isErrorEnabled) putString("income", personIncome.text.toString())
+            if (phoneInput.text!!.isNotEmpty() && !textInputLayout5.isErrorEnabled) putString("phone", phoneInput.text.toString())
+            apply()
         }
     }
 }

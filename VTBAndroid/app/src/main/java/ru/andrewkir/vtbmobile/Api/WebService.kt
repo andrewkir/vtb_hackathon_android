@@ -1,35 +1,16 @@
 package ru.andrewkir.vtbmobile.Api
 
+import com.google.gson.JsonArray
 import com.google.gson.JsonElement
 import com.google.gson.JsonObject
-import com.google.gson.JsonPrimitive
 import io.reactivex.Observable
+import org.json.JSONArray
 import retrofit2.http.*
 import ru.andrewkir.vtbmobile.DataClasses.*
+import ru.andrewkir.vtbmobile.DataClasses.CarDetails
 
 
 interface WebService {
-    @GET("links")
-    fun getAllLinks(
-        @Header("AuthToken") authHeader: String,
-        @Header("accountNumber") accountHeader: String
-    ): Observable<JsonObject>
-
-    @GET("links/{linkId}")
-    fun getLinkInfo(
-        @Header("AuthToken") authHeader: String,
-        @Path(
-            value = "linkId",
-            encoded = true
-        ) linkId: String
-    ): Observable<JsonObject>
-
-    @GET("balance")
-    fun getBalance(
-        @Header("AuthToken") authHeader: String,
-        @Header("accountNumber") accountHeader: String
-    ): Observable<JsonObject>
-
     @POST("car_loan/")
     fun createNewCredit(
         @Body body: CreditRequest
@@ -37,6 +18,12 @@ interface WebService {
 
     @POST("car_recognize/")
     fun recogniseCar(
+        @Body body: CarPhoto
+    ): Observable<JsonElement>
+
+    @POST("car_recognize/")
+    fun recogniseCar(
+        @Header("Authorization") authHeader: String,
         @Body body: CarPhoto
     ): Observable<JsonElement>
 
@@ -68,12 +55,19 @@ interface WebService {
         @Body body: JsonElement
     ): Observable<JsonElement>
 
-    @GET("send")
-    fun sendMoney(
-        @Header("AuthToken") authHeader: String,
-        @Header("accountNumber") accountNumberHeader: String,
-        @Header("receiveAccountNumber") receiveAccountNumber: String,
-        @Header("sum") sum: Double, @Header("x-Idempotency-Key") idempotencyKey: String
-    ): Observable<JsonObject>
+    @POST("accounts/token/refresh/")
+    fun refreshToken(
+        @Body body: JsonObject
+    ): Observable<JWTResponse>
+
+    @POST("marketplace_search/")
+    fun marketPlaceSearch(
+        @Body body: JsonObject
+    ): Observable<CarDetails>
+
+    @GET("search_history/")
+    fun searchHistory(
+        @Header("Authorization") authHeader: String
+    ): Observable<JsonElement>
 }
 
